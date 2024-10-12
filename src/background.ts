@@ -1,4 +1,5 @@
 /// <reference types="chrome"/>
+import { getBearerToken } from "./getBearerToken.js"
 
 chrome.runtime.onInstalled.addListener(() =>{
 
@@ -6,10 +7,19 @@ chrome.runtime.onInstalled.addListener(() =>{
 
 }) 
 
-const authenticatedX = async () =>{
+export const authenticatedX = async () =>{
 
-    const consumerKey = "GA6DX1iLXl7jgxPyrVb6UpmzB",
-          consumerSecret = "NraPRNTDO3aSzNNr8qIqhZ1rYQtS5fXXsl8T72vUim7o0Nk0jx"
+    try{
+
+        return await getBearerToken()
+
+    }catch(error){
+
+        console.error('Error getting bearer token:', error)
+
+        throw error
+        
+    }
 
 }
 
@@ -59,8 +69,6 @@ const blockAdultContent = async (accountID: string) =>{
     }
 
 }
-
-export { authenticatedX }
 
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>{

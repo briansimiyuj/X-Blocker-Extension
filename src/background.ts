@@ -61,3 +61,28 @@ const blockAdultContent = async (accountID: string) =>{
 }
 
 export { authenticatedX }
+
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>{
+
+    if(request.action === "blockAdultContent"){
+
+        blockAdultContent(request.accountID)
+
+            .then(() =>{
+
+                sendResponse({ message: 'Account blocked successfully', status: "success" })
+
+            }).catch(error =>{
+
+                console.error('Error blocking account:', error)
+
+                sendResponse({ message: "Error blocking account", status: "error" })
+
+            })
+
+        return true
+
+    }
+
+})

@@ -1,0 +1,21 @@
+{
+    "manifest_version": 3,
+    "name": "X Content Blocker",
+    "version": "1.0",
+    "permissions": ["storage", "activeTab", "scripting"],
+
+    "background":{
+        "service_worker": "public/js/background.js",
+        "type": "module"
+    },
+
+    "action":{
+        "default_popup": "public/popup.html",
+        "default_icon": "public/icon.png"
+    },
+
+    "content_scripts":[{
+        "matches": ["https://*.twitter.com/*"],
+        "js": ["public/js/contentScript.js"]
+    }]
+}

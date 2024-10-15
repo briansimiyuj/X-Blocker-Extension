@@ -1,7 +1,11 @@
+import dotenv from "../node_modules/dotenv/lib/main"
+
+dotenv.config()
+
 export const getBearerToken = async () =>{
 
-    const consumerKey = "GA6DX1iLXl7jgxPyrVb6UpmzB",
-          consumerSecret = "NraPRNTDO3aSzNNr8qIqhZ1rYQtS5fXXsl8T72vUim7o0Nk0jx",
+    const consumerKey = process.env.twitterConsumerKey,
+          consumerSecret = process.env.twitterConsumerSecret,
           URL = "https://api.twitter.com/oauth2/token",
 
         response = await fetch(
@@ -14,7 +18,7 @@ export const getBearerToken = async () =>{
 
             headers:{
 
-              "Authorization": `Basic ${btoa(consumerKey + ":" + consumerSecret)}`,
+              "Authorization": `Basic ${Buffer.from(`${consumerKey}:${consumerSecret}`).toString("base64")}`,
               "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
 
             },

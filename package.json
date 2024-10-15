@@ -1,5 +1,10 @@
 {
   "devDependencies": {
-    "@types/chrome": "^0.0.277"
+    "@types/chrome": "^0.0.277",
+    "@types/dotenv": "^8.2.0",
+    "@types/node": "^22.7.5"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
   }
 }
